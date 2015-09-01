@@ -51,19 +51,18 @@
 })();
 
 $(window).load(function() {
-    if($('body').offset().top > $(window).height()) {
-        console.log('rel', $('body').offset().top, $(window).height());
-        $('#morphsearch').css('position', 'relative');
-    } else {
-        console.log('abs', $('body').offset().top, $(window).height());
-        $('#morphsearch').css('position', 'absolute');
-    }
 
-    $('ul.axta-carousel').height($(window).height());
-    $('ul.axta-carousel .layer').height($(window).height());
-    $('ul.axta-carousel .layer .layer-layout').height($(window).height());
-});
+    $('.scrollable-area').scroll(function() {
+        if($('.scrollable-area').scrollTop() > $(window).height() - 100) {
+            $('#morphsearch').fadeOut(500);
+        } else {
+            $('#morphsearch').fadeIn(500);
+        }
+    });
+    
+    $('.carousel').css('height', $(window).height() + ' px');
+    $('.axta-carousel').css('height', $(window).height() + ' px');
+    $('.axta-carousel .layer').css('height', $(window).height() + ' px');
+    $('.axta-carousel .layer .layer-layout').css('height', $(window).height() + ' px');
 
-$(window).on('scroll', function() {
-    console.log('Hi');
 });
